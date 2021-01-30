@@ -5,13 +5,13 @@ router.get("/",(req, res)=>{
     res.render("index", {
         title:"Catalogo de muebles",
     products:[
-        {id:"1",title:"silla 1", modelAndroid:"robotech.glb", modelIos:"", 
+        {id:"1",title:"Robotech", modelAndroid:"robotech.glb", modelIos:"", 
         info:"Lorem ipsum dolor sit amet consectetur adipiscing elit, class sapien cras justo venenatis pretium convallis neque, taciti dictum tellus leo eu parturient. " ,
     
     },
 
-        {id:"2",title:"silla 2", modelAndroid:"batman.glb", modelIos:"", 
-        info:"Lorem ipsum dolor sit amet consectetur adipiscing elit, class sapien cras justo venenatis pretium convallis neque, taciti dictum tellus leo eu parturient. " ,
+        {id:"2",title:"Batman", modelAndroid:"batman.glb", modelIos:"", 
+        info:"Lorem2 ipsum dolor sit amet consectetur adipiscing elit, class sapien cras justo venenatis pretium convallis neque, taciti dictum tellus leo eu parturient. " ,
     
     },
     ]});
