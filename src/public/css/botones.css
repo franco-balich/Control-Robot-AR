@@ -1,0 +1,35 @@
+
+.controles{
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    position: absolute; 
+    bottom: 20px; 
+    left: 20px; 
+}
+.botones-top{
+}   
+.botones-middle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.botones-down{
+}
+.btnControl{
+    width: 30%;
+    height: 30%;
+    font-size: 2.5em;
+    opacity: 0.5;
+    margin:0 7% ;
+    border-radius: 5px; 
+    background: rgb(16, 209, 16);
+    border: none;   
+    color: white;
+        
+    text-align: center;
+}
+.hide{
+    display: none;
+}

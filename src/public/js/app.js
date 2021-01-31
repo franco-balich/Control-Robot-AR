@@ -10,3 +10,13 @@ buttons.forEach((item)=>{
     });
 });
 */
+document.querySelector("#model-viewer").addEventListener('ar-status', (event) => {
+    if(event.detail.status === 'not-session-started'){
+        var boton = document.getElementById("btnControl");
+        boton.removeClass('hide');
+        
+    }
+    else{
+        boton.addClass('hide');
+    }
+  });
