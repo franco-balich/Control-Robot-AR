@@ -107,7 +107,10 @@
                 controles<%=product.id %>.classList.remove('hide');
                 modelViewer<%=product.id %>.orientation = `$ 0 0 ${angle}deg`;
             }
-    
+            if(event.detail.status === 'not-presenting'){
+                controles<%=product.id %>.classList.add('hide');
+                modelViewer<%=product.id %>.orientation = `$ 0 0 ${angle}deg`;
+            }
             //data-position = ”0.13m 0.018m 0.31m”
     });
     </script>

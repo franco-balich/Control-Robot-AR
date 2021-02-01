@@ -5,7 +5,7 @@ router.get("/",(req, res)=>{
     res.render("index", {
         title:"Catálogo de robots",
     products:[
-        {id:"1",title:"Auto Espacial", modelAndroid:"auto-espacial.glb", modelIos:"", scale : "0.1 0.1 0.1", portada:"auto-espacial.gif",
+        {id:"1",title:"Auto Espacial", modelAndroid:"auto-espacial.glb", modelIos:"", scale : "1 1 1", portada:"auto-espacial.gif",
         info:"Es un auto espacial diseñado para soportar una diversa cantidad de situaciones y terrenos." ,
     
     },
@@ -16,7 +16,7 @@ router.get("/",(req, res)=>{
         {id:"3",title:"Robot con brazos", modelAndroid:"robot-con-brazos.glb", modelIos:"", scale : "0.2 0.2 0.2", portada:"robot-con-brazos.gif",
         info:"Este robot se especializa en mover objetos de un lugar a otro con sus brazos mecánicos." ,
     },
-        {id:"4",title:"Robot Camara", modelAndroid:"robot-camara.glb", modelIos:"", scale : "0.45 0.45 0.45", portada:"robot-camara.gif",
+        {id:"4",title:"Robot Camara", modelAndroid:"robot-camara.glb", modelIos:"", scale : "1 1 1", portada:"robot-camara.gif",
         info:"Es un robot que se caracteriza por la gran cámara que posee al frente de su estructura."
     }
     ]});   
