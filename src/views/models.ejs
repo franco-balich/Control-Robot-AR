@@ -14,34 +14,33 @@
         shadow-intensity="2.5"
         shadow-softness="1"
         poster = <%="assets/img/gifs/" +  product.portada %> >  
-        
-                    
+    
             <div class="controles hide"  id="contenedor-controles<%=product.id %>"> 
                 <div class="botones-top ">
-                    <button type="button" id="btnArriba<%=product.id %>" class="btnControl">A</button>
+                    <button type="button" id="btnArriba<%=product.id %>" class="btnControl">⬆</button>
                 </div>
 
                 <div class="botones-middle">
-                    <button type="button" id="btnIzquierda<%=product.id %>" class=" btnControl"><</button>
-                    <button type="button" id="btnDerecha<%=product.id %>" class=" btnControl">></button>
+                    <button type="button" id="btnIzquierda<%=product.id %>" class=" btnControl">⬅</button>
+                    <button type="button" id="btnDerecha<%=product.id %>" class=" btnControl">➡</button>
                 </div>
 
                 <div class="botones-down">
-                    <button type="button" id="btnAbajo<%=product.id %>" class="btnControl">V</button>
+                    <button type="button" id="btnAbajo<%=product.id %>" class="btnControl">⬇</button>
                 </div>
             </div>
             <button slot="ar-button" style=" border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; " class="btn btn-primary">
                 Controlar por AR 📲
             </button>
-    </model-viewer> <!-- https://modelviewer.dev/ -->
-
+    </model-viewer>
 
     <div class="card-body">
         <h5 class="card-title"><%= product.title %></h5>
         <p class="card-text"><%= product.info %></p>
         
     </div>
-    </div>
+
+</div>
 
     <script>
         var x<%=product.id %>=0,y<%=product.id %>=0,z<%=product.id %>=0, direccion<%=product.id %>=0, angle<%=product.id %>=0;
@@ -52,9 +51,10 @@
             botonIzquierda<%=product.id %> = document.getElementById("btnIzquierda<%=product.id %>"),
             botonDerecha<%=product.id %> = document.getElementById("btnDerecha<%=product.id %>");
         var controles<%=product.id %> = document.getElementById("contenedor-controles<%=product.id %>");
-    
+        
+        direccion<%=product.id %>=direccion<%=product.id %>+(<%=product.direccion %>);
         botonArriba<%=product.id %>.addEventListener("click", ()=> {
-            botonArriba<%=product.id %>.style.backgroundColor = "#339900";
+            botonArriba<%=product.id %>.style.backgroundColor = "#1440200";
             
             if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==0){
                 x<%=product.id %>=x<%=product.id %>-0.1;
@@ -71,7 +71,7 @@
             modelViewer<%=product.id %>.cameraTarget = `${x<%=product.id %>}m ${y<%=product.id %>}m ${z<%=product.id %>}m`;
             });
         botonAbajo<%=product.id %>.addEventListener("click", ()=> {
-            botonAbajo<%=product.id %>.style.backgroundColor = "#339900";
+            botonAbajo<%=product.id %>.style.backgroundColor = "#1440200";
             if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==0){
                 x<%=product.id %>=x<%=product.id %>+0.1;
             }
@@ -89,11 +89,11 @@
         botonIzquierda<%=product.id %>.addEventListener("click", ()=> {
             angle<%=product.id %>=angle<%=product.id %>-90;
             direccion<%=product.id %>--;
-            botonIzquierda<%=product.id %>.style.backgroundColor = "#339900";
+            botonIzquierda<%=product.id %>.style.backgroundColor = "#1440200";
             modelViewer<%=product.id %>.orientation =  `0deg deg ${angle<%=product.id %>}deg`;
             });
         botonDerecha<%=product.id %>.addEventListener("click", ()=> {
-            botonDerecha<%=product.id %>.style.backgroundColor = "#339900";
+            botonDerecha<%=product.id %>.style.backgroundColor = "#1440200";
             angle<%=product.id %>=angle<%=product.id %>+90;
             direccion<%=product.id %>++;
             modelViewer<%=product.id %>.orientation = `0deg 0deg ${angle<%=product.id %>}deg`;
@@ -105,7 +105,9 @@
             console.log(event.detail.status)
             if(event.detail.status === 'session-started'){
                 controles<%=product.id %>.classList.remove('hide');
+                
                 modelViewer<%=product.id %>.orientation = `$ 0 0 ${angle}deg`;
+                
             }
             if(event.detail.status === 'not-presenting'){
                 controles<%=product.id %>.classList.add('hide');

@@ -1,7 +1,7 @@
 
 .controles{
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     margin: 20px;
     padding: 10px;
     text-align: center;
@@ -20,18 +20,17 @@
 .btnControl{
     width: 30%;
     height: 30%;
-    font-size: 2.5em;
+    font-size: 2em;
     opacity: 0.5;
     margin:0 7% ;
     border-radius: 5px; 
-    background: rgb(16, 209, 16);
+    background: rgb(16, 56, 235);
     border: none;   
     color: white;
         
     text-align: center;
 }
 .hide{
-    
     opacity: 0;
     visibility: hidden;
     transition: visibility 2s, opacity 1s 1s;
