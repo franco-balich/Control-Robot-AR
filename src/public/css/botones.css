@@ -31,5 +31,11 @@
     text-align: center;
 }
 .hide{
-    display: none;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 2s, opacity 1s 1s;
 }
+model-viewer[ar-status="session-started"] > #ar-prompt {
+    display: block;
+  }

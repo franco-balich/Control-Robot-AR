@@ -1,57 +1,113 @@
 <div class="card" style="width: 22rem; ">
     <model-viewer 
-        class="model card-img-top"    
+        class="model card-img-top" 
+        
+        id="model-viewer<%=product.id %>"   
         src= <%="assets/models/glb/" +  product.modelAndroid %>
         ios-src=<%="assets/models/usdz/" +  product.modelIos %> 
         auto-rotate
         camera-controls
         ar
-        skybox-image="./assets/img/spruit_sunrise_1k_HDR.hdr"
-        shadow-intensity="1"
+        bounds="tight"
+        skybox-image="./assets/img/Harbor_3_Free_Ref.hdr"
+        exposure="0.95" 
+        shadow-intensity="2.5"
         shadow-softness="1"
-        poster ="./assets/thumbnails/robotech.png">  
-            <button class="Hotspot"  
-                data-bs-toggle="modal" 
-                data-bs-target="#arModal" 
-                slot="hotspot-3" 
-                data-position="0.23100925665200728m 0.6025651278145384m -0.04423205011744791m" 
-                data-normal="0.9999999999927691m -0.000003801820573102254m 8.896296834302009e-8m" 
-                data-visibility-attribute="visible">
-                <div class="HotspotAnnotation">Turbina</div>
-            </button> 
+        poster = <%="assets/img/gifs/" +  product.portada %> >  
+        
+                    
+            <div class="controles hide"  id="contenedor-controles<%=product.id %>"> 
+                <div class="botones-top ">
+                    <button type="button" id="btnArriba<%=product.id %>" class="btnControl">A</button>
+                </div>
+
+                <div class="botones-middle">
+                    <button type="button" id="btnIzquierda<%=product.id %>" class=" btnControl"><</button>
+                    <button type="button" id="btnDerecha<%=product.id %>" class=" btnControl">></button>
+                </div>
+
+                <div class="botones-down">
+                    <button type="button" id="btnAbajo<%=product.id %>" class="btnControl">V</button>
+                </div>
+            </div>
             <button slot="ar-button" style=" border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; " class="btn btn-primary">
-                Ver en AR
+                Controlar por AR 📲
             </button>
-            
-            <%- include('control') %>
     </model-viewer> <!-- https://modelviewer.dev/ -->
 
 
     <div class="card-body">
         <h5 class="card-title"><%= product.title %></h5>
         <p class="card-text"><%= product.info %></p>
+        
     </div>
     </div>
 
+    <script>
+        var x<%=product.id %>=0,y<%=product.id %>=0,z<%=product.id %>=0, direccion<%=product.id %>=0, angle<%=product.id %>=0;
+        
+        var modelViewer<%=product.id %>=document.getElementById("model-viewer<%=product.id %>");
+        var botonArriba<%=product.id %> = document.getElementById("btnArriba<%=product.id %>"),
+            botonAbajo<%=product.id %> = document.getElementById("btnAbajo<%=product.id %>"),
+            botonIzquierda<%=product.id %> = document.getElementById("btnIzquierda<%=product.id %>"),
+            botonDerecha<%=product.id %> = document.getElementById("btnDerecha<%=product.id %>");
+        var controles<%=product.id %> = document.getElementById("contenedor-controles<%=product.id %>");
+    
+        botonArriba<%=product.id %>.addEventListener("click", ()=> {
+            botonArriba<%=product.id %>.style.backgroundColor = "#339900";
+            
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==0){
+                x<%=product.id %>=x<%=product.id %>-0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==1){
+                z<%=product.id %>=z<%=product.id %>-0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==2){
+                x<%=product.id %>=x<%=product.id %>+0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==3){
+                z<%=product.id %>=z<%=product.id %>+0.1;
+            }
+            modelViewer<%=product.id %>.cameraTarget = `${x<%=product.id %>}m ${y<%=product.id %>}m ${z<%=product.id %>}m`;
+            });
+        botonAbajo<%=product.id %>.addEventListener("click", ()=> {
+            botonAbajo<%=product.id %>.style.backgroundColor = "#339900";
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==0){
+                x<%=product.id %>=x<%=product.id %>+0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==1){
+                z<%=product.id %>=z<%=product.id %>+0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==2){
+                x<%=product.id %>=x<%=product.id %>-0.1;
+            }
+            if(direccion<%=product.id %>%4*Math.sign(direccion<%=product.id %>%4)==3){
+                z<%=product.id %>=z<%=product.id %>-0.1;
+            }
+            modelViewer<%=product.id %>.cameraTarget = `${x<%=product.id %>}m ${y<%=product.id %>}m ${z<%=product.id %>}m`;
+            });
+        botonIzquierda<%=product.id %>.addEventListener("click", ()=> {
+            angle<%=product.id %>=angle<%=product.id %>-90;
+            direccion<%=product.id %>--;
+            botonIzquierda<%=product.id %>.style.backgroundColor = "#339900";
+            modelViewer<%=product.id %>.orientation =  `0deg deg ${angle<%=product.id %>}deg`;
+            });
+        botonDerecha<%=product.id %>.addEventListener("click", ()=> {
+            botonDerecha<%=product.id %>.style.backgroundColor = "#339900";
+            angle<%=product.id %>=angle<%=product.id %>+90;
+            direccion<%=product.id %>++;
+            modelViewer<%=product.id %>.orientation = `0deg 0deg ${angle<%=product.id %>}deg`;
+            });
+    
+        modelViewer<%=product.id %>.scale= "<%= product.scale %>";
 
-    <!-- Modal -->
-    <div class="modal fade" id="arModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <%= product.info %>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+        modelViewer<%=product.id %>.addEventListener('ar-status', (event) => {
+            console.log(event.detail.status)
+            if(event.detail.status === 'session-started'){
+                controles<%=product.id %>.classList.remove('hide');
+                modelViewer<%=product.id %>.orientation = `$ 0 0 ${angle}deg`;
+            }
+    
+            //data-position = ”0.13m 0.018m 0.31m”
+    });
+    </script>
